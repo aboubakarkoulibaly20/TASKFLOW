@@ -1,0 +1,126 @@
+﻿TABLES:
+- actes_juridiques
+- activity_logs
+- allowance_payslip
+- allowances
+- categories
+- ch_favorites
+- ch_messages
+- client_cga
+- client_meeting
+- client_notifications
+- client_sub_categories
+- client_workspace
+- clients
+- comment_attachments
+- comments
+- contract_types
+- contracts
+- countries
+- currencies
+- deduction_payslip
+- deductions
+- email_templates
+- estimates_invoice_item
+- estimates_invoices
+- etatfinancier
+- expense_types
+- expenses
+- failed_jobs
+- favorites
+- fcm_tokens
+- items
+- jobs
+- languages
+- leads_status
+- leave_editors
+- leave_request_visibility
+- leave_requests
+- media
+- meeting_user
+- meetings
+- menu_orders
+- migrations
+- milestones
+- modules
+- notes
+- notification_user
+- notifications
+- password_resets
+- payment_methods
+- payments
+- payslips
+- permissions
+- personal_access_tokens
+- pinned
+- priorities
+- project_client
+- project_tag
+- project_user
+- projects
+- qrcode
+- recurring_tasks
+- reminders
+- role_status
+- roles
+- settings
+- settings2
+- situations
+- status
+- status_timelines
+- tags
+- task_lists
+- task_time_entries
+- task_user
+- tasks
+- tasks_priority
+- tasks_status
+- taxes
+- templates
+- tickets_status
+- time_trackers
+- todos
+- units
+- updates
+- user_client_preferences
+- user_workspace
+- users
+- workspaces
+
+USERS COLUMNS:
+Array
+(
+    [0] => id
+    [1] => first_name
+    [2] => last_name
+    [3] => email
+    [4] => password
+    [5] => created_at
+    [6] => updated_at
+    [7] => active_status
+    [8] => avatar
+    [9] => type
+    [10] => status
+    [11] => dark_mode
+    [12] => messenger_color
+)
+
+ROLES COLUMNS:
+Array
+(
+    [0] => id
+    [1] => name
+    [2] => guard_name
+    [3] => created_at
+    [4] => updated_at
+)
+
+ROLES DATA:
+Array
+(
+)
+
+USERS DATA:
+Array
+(
+)

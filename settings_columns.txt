@@ -1,0 +1,9 @@
+settings_id
+settings_company_name
+settings_company_address
+settings_company_phone
+settings_company_email
+settings_company_website
+settings_logo
+created_at
+updated_at
