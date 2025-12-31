@@ -50,7 +50,7 @@
     <option value="Congo" {{ runtimePreselected($selected_country ?? '', 'Congo') }}>Congo, the Democratic Republic of the</option>
     <option value="Cook Islands" {{ runtimePreselected($selected_country ?? '', 'Cook Islands') }}>Cook Islands</option>
     <option value="Costa Rica" {{ runtimePreselected($selected_country ?? '', 'Costa Rica') }}>Costa Rica</option>
-    <option value="Cota D`Ivoire" {{ runtimePreselected($selected_country ?? '', 'Cota D`Ivoire') }}>Cote d'Ivoire</option>
+    <option value="Cote d'Ivoire" {{ runtimePreselected($selected_country ?? '', 'Cote d\'Ivoire') }}>Cote d'Ivoire</option>
     <option value="Croatia" {{ runtimePreselected($selected_country ?? '', 'Croatia') }}>Croatia (Hrvatska)</option>
     <option value="Cuba" {{ runtimePreselected($selected_country ?? '', 'Cuba') }}>Cuba</option>
     <option value="Cyprus" {{ runtimePreselected($selected_country ?? '', 'Cyprus') }}>Cyprus</option>

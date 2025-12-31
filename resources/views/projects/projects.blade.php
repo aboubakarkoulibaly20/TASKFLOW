@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title')
-    <?= get_label('diliegnces', 'diligences') ?> - <?= get_label('list_view', 'List view') ?>
+    {{ mb_strtoupper(get_label('projects', 'Diligences')) }} - VUE LISTE (TEST CACHE)
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -13,7 +13,7 @@
                         </li>
                         <li class="breadcrumb-item">
                             <a
-                                href="{{ url(getUserPreferences('projects', 'default_view')) }}"><?= get_label('projects', 'Projects') ?></a>
+                                href="{{ url(getUserPreferences('projects', 'default_view')) }}"><?= get_label('projects', 'Diligences') ?></a>
                         </li>
                         @if ($is_favorites == 1)
                             <li class="breadcrumb-item"><?= get_label('favorite', 'Favorite') ?></li>
@@ -37,7 +37,7 @@
             <div>
                 @php
                     // Base URLs for different views
-                    $gridUrl = $is_favorites == 1 ? url('Diligences/favorite') : url('Diligences');
+                    $gridUrl = $is_favorites == 1 ? url('projects/favorite') : url('projects');
                     $kanbanUrl =
                         $is_favorites == 1
                             ? route('projects.kanban_view', ['type' => 'favorite'])

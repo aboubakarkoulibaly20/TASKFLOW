@@ -9,14 +9,14 @@ sort($tax_centers);
     <div class="col-lg-12">
 
         <div class="row">
-            <!-- LEFT COLUMN: Détails du Compte -->
-            <div class="row-lg-6 p-20 border-right">
+            <!-- FULL WIDTH: Détails du Compte -->
+            <div class="col-12 p-20">
                 <h4 class="card-title m-b-20"><strong><i class="sl-icon-user"></i> {{ cleanLang(__('Details du compte')) }}</strong></h4>
 
-                <!-- Line 1: Catégorie de client | Forme Juridique | Email -->
+                <!-- Line 1: Catégorie de client | CGA | Forme Juridique | Email -->
                 <div class="form-group row">
-                    <div class="col-sm-12 col-lg-4">
-                        <label class="control-label col-form-label required">{{ cleanLang(__('lang.category')) }}*</label>
+                    <div class="col-sm-12 col-lg-3">
+                        <label class="control-label col-form-label required">{{ cleanLang(__('Catégorie de client')) }}*</label>
                         <div class="input-group input-group-sm">
                             <select class="select2-basic form-control form-control-sm" id="client_categoryid" name="client_categoryid">
                                 @foreach($categories as $category)
@@ -31,25 +31,33 @@ sort($tax_centers);
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-lg-4">
+                    <!-- Numéro d'adhésion CGA (Dynamique) -->
+                    <div class="col-sm-12 col-lg-3" id="cga_field_wrapper" style="display:none;">
+                        <label class="control-label col-form-label" id="cga_label">N° d'adhésion CGA</label>
+                        <input type="text" class="form-control form-control-sm" id="client_custom_field_4" name="client_custom_field_4" value="{{ $client->client_custom_field_4 ?? '' }}">
+                    </div>
+                    <div class="col-sm-12 col-lg-3">
                         <label class="control-label col-form-label">Forme Juridique</label>
-                        <select class="select2-basic form-control form-control-sm" name="client_custom_field_3">
+                        <select class="select2-basic form-control form-control-sm" id="client_forme_juridique" name="client_custom_field_3">
+                            <option value="ENTREPRISE INDIVIDUELLE" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'ENTREPRISE INDIVIDUELLE') }}>ENTREPRISE INDIVIDUELLE</option>
                             <option value="SARL" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'SARL') }}>SARL</option>
-                            <option value="SA" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'SA') }}>SA</option>
-                            <option value="EURL" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'EURL') }}>EURL</option>
                             <option value="SAS" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'SAS') }}>SAS</option>
-                            <option value="SCI" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'SCI') }}>SCI</option>
-                            <option value="Auto-entrepreneur" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'Auto-entrepreneur') }}>Auto-entrepreneur</option>
+                            <option value="SA" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'SA') }}>SA</option>
+                            <option value="SNC" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'SNC') }}>SNC</option>
+                            <option value="NCS" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'NCS') }}>NCS</option>
+                            <option value="ONG" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'ONG') }}>ONG</option>
+                            <option value="AUTRE" {{ runtimePreselected($client->client_custom_field_3 ?? '', 'AUTRE') }}>AUTRE</option>
                         </select>
                     </div>
-                    <div class="col-sm-12 col-lg-4">
+                    <div class="col-sm-12 col-lg-3">
                         <label class="control-label col-form-label required">{{ cleanLang(__('lang.email_address')) }}*</label>
                         <input type="text" class="form-control form-control-sm" id="email" name="client_email" value="{{ $client->client_email ?? '' }}" placeholder="">
                     </div>
                 </div>
 
-                <!-- Line 2:  | Mot de passe | Company Name | Commercial Name-->
+                <!-- Line 2: Mot de passe | Company Name | Commercial Name -->
                 <div class="form-group row">
+                    @if(isset($page['section']) && $page['section'] == 'create')
                     <div class="col-sm-12 col-lg-4">
                         <label class="control-label col-form-label">Mot de passe</label>
                         <div class="input-group input-group-sm">
@@ -60,7 +68,8 @@ sort($tax_centers);
                             </div>
                         </div>
                     </div>
-                     <div class="col-sm-12 col-lg-4">
+                    @endif
+                     <div class="col-sm-12 col-lg-4" id="company_name_wrapper">
                         <label class="control-label col-form-label required">{{ cleanLang(__('Nom de l\'entreprise')) }}*</label>
                         <input type="text" class="form-control form-control-sm" id="client_company_name" name="client_company_name" value="{{ $client->client_company_name ?? '' }}">
                     </div>
@@ -69,6 +78,7 @@ sort($tax_centers);
                         <input type="text" class="form-control form-control-sm" name="client_custom_field_9" value="{{ $client->client_custom_field_9 ?? '' }}">
                     </div>
                 </div>
+
 
                 
 
@@ -271,7 +281,7 @@ sort($tax_centers);
                     </div>
                     <div class="col-sm-12 col-lg-4">
                         <label class="control-label col-form-label">{{ cleanLang(__('Sigle')) }}</label>
-                        <input type="text" class="form-control form-control-sm" name="client_custom_field_20" value="{{ $client->client_custom_field_20 ?? '' }}" placeholder="Sigle">
+                        <input type="text" class="form-control form-control-sm" name="client_custom_field_6" value="{{ $client->client_custom_field_6 ?? '' }}" placeholder="Sigle">
                     </div>
                     <div class="col-sm-12 col-lg-4">
                         <label class="control-label col-form-label">{{ cleanLang(__('lang.zipcode')) }}</label>
@@ -377,7 +387,49 @@ sort($tax_centers);
             $('#togglePassword').find('i').removeClass('sl-icon-eye').addClass('sl-icon-eye-off');
         });
 
-        // Country Mapping - Extended with more countries
+        // CGA Logic
+        function updateCGAField() {
+            const categorySelect = $('#client_categoryid');
+            const categoryName = categorySelect.find('option:selected').text().trim();
+            const wrapper = $('#cga_field_wrapper');
+            const label = $('#cga_label');
+            const input = $('#client_custom_field_4');
+
+            if (categoryName && categoryName !== '--') {
+                wrapper.show();
+                if (categoryName === 'DC-KNOWING IFG') {
+                    label.text('Numéro cabinet');
+                    if (input.val() === '' || input.val().startsWith('DCK-CGA')) {
+                        input.val('DCK-458');
+                    }
+                } else {
+                    label.text('Numéro d\'adhésion CGA');
+                    if (input.val() === '' || input.val() === 'DCK-458') {
+                        const now = new Date();
+                        const dateStr = now.getFullYear().toString() + (now.getMonth() + 1).toString().padStart(2, '0') + now.getDate().toString().padStart(2, '0');
+                        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                        const randomLetter = letters.charAt(Math.floor(Math.random() * letters.length));
+                        const randomDigits = Math.floor(Math.random() * 900) + 100;
+                        input.val(`DCK-CGA-${dateStr}-${randomLetter}${randomDigits}`);
+                    }
+                }
+            } else {
+                wrapper.hide();
+            }
+        }
+
+        // Company Name Logic
+        function updateCompanyNameVisibility() {
+            const juridique = $('#client_forme_juridique').val();
+            const wrapper = $('#company_name_wrapper');
+            if (juridique === 'ENTREPRISE INDIVIDUELLE') {
+                wrapper.hide();
+            } else {
+                wrapper.show();
+            }
+        }
+
+        // Country Mapping
         const countryMapping = {
             "Afghanistan": { prefix: "+93", currency: "AFN" },
             "Algeria": { prefix: "+213", currency: "DZD" },
@@ -446,11 +498,7 @@ sort($tax_centers);
             const country = $('#client_billing_country').val();
             if (countryMapping[country]) {
                 const prefix = countryMapping[country].prefix;
-                $('#country_prefix').text(prefix + " (" + countryMapping[country].currency + ")");
                 $('#phone_prefix_select').val(prefix);
-            } else {
-                $('#country_prefix').text("?");
-                $('#phone_prefix_select').val("");
             }
         }
 
@@ -458,7 +506,6 @@ sort($tax_centers);
         function updateCountryFromPrefix() {
             const prefix = $('#phone_prefix_select').val();
             if (prefix) {
-                // Mapping from prefix to country
                 const prefixToCountry = {
                     '+225': 'Cote d\'Ivoire',
                     '+226': 'Burkina Faso',
@@ -484,42 +531,116 @@ sort($tax_centers);
                 
                 const country = prefixToCountry[prefix];
                 if (country && countryMapping[country]) {
-                    $('#client_billing_country').val(country);
-                    // Rafraîchir le select2 pour afficher le pays
-                    $('#client_billing_country').trigger('change.select2');
-                    $('#country_prefix').text(prefix + " (" + countryMapping[country].currency + ")");
+                    $('#client_billing_country').val(country).trigger('change.select2');
                 }
-            } else {
-                $('#country_prefix').text("?");
             }
         }
 
+        // Dropzone initialization
+        if ($("#client_logo_upload").length) {
+            // Destroy any existing dropzone
+            if (Dropzone.instances.length > 0) {
+                Dropzone.instances.forEach(dz => {
+                    if (dz.element.id === "client_logo_upload") {
+                        dz.destroy();
+                    }
+                });
+            }
+            
+            var client_logo_dropzone = new Dropzone("#client_logo_upload", {
+                url: NX.site_url + "/uploadlogo",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                maxFiles: 1,
+                acceptedFiles: 'image/*',
+                addRemoveLinks: true,
+                init: function() {
+                    this.on("success", function(file, response) {
+                        try {
+                            var jsonResponse = JSON.parse(response);
+                            if (jsonResponse.uniqueid) {
+                                // Add hidden field
+                                $("#client_logo_upload").append('<input type="hidden" name="client_logo" value="' + jsonResponse.filename + '">');
+                            }
+                        } catch (e) {
+                            // If response is already an object
+                            if (response.uniqueid) {
+                                $("#client_logo_upload").append('<input type="hidden" name="client_logo" value="' + response.filename + '">');
+                            }
+                        }
+                    });
+                    this.on("error", function(file, message) {
+                        NX.notification({
+                            type: 'error',
+                            message: message
+                        });
+                        this.removeFile(file);
+                    });
+                }
+            });
+        }
+
         // Initialize on page load
-        $(document).ready(function() {
-            // Set initial values if client data exists
-            setTimeout(function() {
-                const selectedCountry = $('#client_billing_country').val();
-                if (selectedCountry && countryMapping[selectedCountry]) {
-                    const prefix = countryMapping[selectedCountry].prefix;
-                    $('#phone_prefix_select').val(prefix);
-                    $('#country_prefix').text(prefix + " (" + countryMapping[selectedCountry].currency + ")");
-                }
+        setTimeout(function() {
+            updateCGAField();
+            updateCompanyNameVisibility();
+            updatePrefixFromCountry();
+        }, 300);
+        
+        // Event listeners
+        $('#client_categoryid').on('change', function() {
+            updateCGAField();
+        });
+        
+        $('#client_forme_juridique').on('change', function() {
+            updateCompanyNameVisibility();
+        });
+
+        $('#client_billing_country').on('change', function() {
+            updatePrefixFromCountry();
+        });
+        
+        $('#phone_prefix_select').on('change', function() {
+            updateCountryFromPrefix();
+        });
+        
+        // ============================================
+        // NESTED MODAL: Category Modal over Client Modal
+        // ============================================
+        
+        // When actionsModal opens, make its backdrop transparent
+        $(document).on('shown.bs.modal', '#actionsModal', function () {
+            console.log('Category modal opened');
+            
+            // Find all modal backdrops
+            var $backdrops = $('.modal-backdrop');
+            console.log('Number of backdrops:', $backdrops.length);
+            
+            if ($backdrops.length > 1) {
+                // Make the last backdrop (category modal) semi-transparent
+                $backdrops.last().css({
+                    'background-color': 'rgba(0, 0, 0, 0.3)',
+                    'opacity': '1',
+                    'z-index': '1055'
+                });
                 
-                // Also check if prefix is already selected
-                const selectedPrefix = $('#phone_prefix_select').val();
-                if (selectedPrefix) {
-                    updateCountryFromPrefix();
-                }
-            }, 100);
+                // Ensure actionsModal is above the backdrop
+                $('#actionsModal').css('z-index', '1060');
+                
+                // Ensure commonModal stays visible
+                $('#commonModal').css('z-index', '1050');
+            }
+        });
+        
+        // When actionsModal closes, ensure commonModal stays open
+        $(document).on('hidden.bs.modal', '#actionsModal', function () {
+            console.log('Category modal closed');
             
-            // Event listeners
-            $('#client_billing_country').on('change', function() {
-                updatePrefixFromCountry();
-            });
-            
-            $('#phone_prefix_select').on('change', function() {
-                updateCountryFromPrefix();
-            });
+            // Ensure body keeps modal-open class if commonModal is still open
+            if ($('#commonModal').hasClass('show')) {
+                $('body').addClass('modal-open');
+            }
         });
     });
 </script>

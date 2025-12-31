@@ -417,7 +417,12 @@ class UserRepository {
 
         //optional
         if (request('password') != '') {
-            $user->password = bcrypt(request('password'));
+            //[Custom] restrict admin from changing client password
+            if (auth()->user()->is_team && $user->type == 'client') {
+                //do nothing - admin cannot change client password
+            } else {
+                $user->password = bcrypt(request('password'));
+            }
         }
         if (request('position') != '') {
             $user->position = request('position');

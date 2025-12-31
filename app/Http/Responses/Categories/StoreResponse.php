@@ -53,8 +53,9 @@ class StoreResponse implements Responsable {
             ];
             
             //close modal
-            $modal = (request('target_modal') == 'actionsModal') ? '#actionsModal' : '#commonModal';
-            $jsondata['dom_visibility'][] = array('selector' => $modal, 'action' => 'close-modal');
+            //[Custom] Prevent closing modal when adding from external source (like client modal)
+            //$modal = (request('target_modal') == 'actionsModal') ? '#actionsModal' : '#commonModal';
+            //$jsondata['dom_visibility'][] = array('selector' => $modal, 'action' => 'close-modal');
 
         } else {
             //prepend content on top of list

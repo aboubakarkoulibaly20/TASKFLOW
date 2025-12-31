@@ -143,7 +143,7 @@
                     class="sidenav-menu-item {{ $page['mainmenu_sales'] ?? '' }}">
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0);" aria-expanded="false">
                         <i class="ti-wallet"></i>
-                        <span class="hide-menu">{{ cleanLang(__('lang.ventes')) }}
+                        <span class="hide-menu">{{ cleanLang(__('finances')) }}
                         </span>
                     </a>
                     <ul aria-expanded="false" class="collapse">
@@ -202,13 +202,13 @@
                     <!--multiple menu-->
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0);" aria-expanded="false">
                         <i class="ti-bookmark-alt"></i>
-                        <span class="hide-menu">{{ cleanLang(__('lang.proposals')) }}
+                        <span class="hide-menu">{{ cleanLang(__('Dévises')) }}
                         </span>
                     </a>
                     <ul aria-expanded="false" class="collapse">
                         <li class="sidenav-submenu {{ $page['submenu_proposals'] ?? '' }}" id="submenu_proposals">
                             <a href="{{ _url('/proposals') }}"
-                                class="{{ $page['submenu_proposals'] ?? '' }}">{{ cleanLang(__('lang.proposals')) }}</a>
+                                class="{{ $page['submenu_proposals'] ?? '' }}">{{ cleanLang(__('Dévises')) }}</a>
                         </li>
                         <li class="sidenav-submenu {{ $page['submenu_proposal_templates'] ?? '' }}"
                             id="submenu_proposal_templates">

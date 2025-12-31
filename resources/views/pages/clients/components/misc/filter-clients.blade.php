@@ -44,9 +44,11 @@
                                 <select name="filter_client_categoryid" id="filter_client_categoryid"
                                     class="form-control form-control-sm select2-basic select2-multiple select2-hidden-accessible"
                                     multiple="multiple" tabindex="-1" aria-hidden="true">
-                                    @foreach($categories as $category)
-                                    <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
-                                    @endforeach
+                                    @if(isset($categories))
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -65,10 +67,12 @@
                                 <select name="filter_tags" id="filter_tags"
                                     class="form-control form-control-sm select2-multiple {{ runtimeAllowUserTags() }} select2-hidden-accessible"
                                     multiple="multiple" tabindex="-1" aria-hidden="true">
-                                    @foreach($tags as $tag)
-                                    <option value="{{ $tag->tag_title }}">
-                                        {{ $tag->tag_title }}</option>
-                                    @endforeach
+                                    @if(isset($tags))
+                                        @foreach($tags as $tag)
+                                        <option value="{{ $tag->tag_title }}">
+                                            {{ $tag->tag_title }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
